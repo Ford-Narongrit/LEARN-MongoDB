@@ -19,21 +19,24 @@ mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }).then(
 );
 
 var app = express();
+
 //ทำให้ ดึง Uri ไปใช้ได้
 app.use(cors());
+
 // คำสั่งสำหรับแปลงค่า JSON ให้สามารถดึงและส่งค่าไปยัง MongoDB Atlas ได้
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//setup path
+//setup port
 var port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log("[success] Server is running : listening on http://localhost:" + port);
 });
 
-
+var send = require("./send");
 // ข้อความสำหรับ path หน้าแรกของ express เรา (localhost:5000/)
 app.get("/", (req, res) => {
+  send.send("Hello ford in index.js");
   res.status(200).send("หน้าแรกของ api express");
 });
 

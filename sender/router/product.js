@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Product = require("../models/Product");
+var send = require("../send");
 
 // GET all
 router.get("/", (req, res) => {
@@ -23,6 +24,8 @@ router.post("/", (req, res) => {
   var obj = new Product(req.body);
   obj.save((err, data) => {
     if (err) return res.status(400).send(err);
+    //send obj
+    send.send(obj);
     res.status(200).send("เพิ่มข้อมูลเรียบร้อย");
   });
 });
@@ -31,6 +34,8 @@ router.post("/", (req, res) => {
 router.put("/:_id", (req, res) => {
   Product.findByIdAndUpdate(req.params._id, req.body, (err, data) => {
     if (err) return res.status(400).send(err);
+    //send obj
+    send.send(req.body);
     res.status(200).send("อัพเดทข้อมูลเรียบร้อย");
   });
 });
