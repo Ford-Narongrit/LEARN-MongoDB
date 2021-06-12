@@ -7,7 +7,9 @@
 ## Development
 ```cd receiver```
 ```npm run dev```
-* เปิดพร้อมกัน 2 ตัว
+
+*เปิดพร้อมกัน 2 ตัว
+
 ```cd sender```
 ```npm run dev```
 * test POST PUT DELET in POSTMAN
